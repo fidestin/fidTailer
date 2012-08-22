@@ -41,6 +41,7 @@ namespace fidTailerP
         protected void rpStores_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             Int32 storeID = Convert.ToInt32(e.CommandArgument);
+            Session["storeID"] = storeID;
             Response.Redirect("businessAccounts.aspx?q="+storeID.ToString());
         }
     }
