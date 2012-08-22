@@ -1,0 +1,2158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SendHotelEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="To" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendHotelEmailResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SendEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="To" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendEmailResult" type="tns:ReturnStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RequestCustomerPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customeremail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestCustomerPasswordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RequestCustomerActivation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestCustomerActivationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Firstname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateCustomerResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsAlive">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsAliveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IsAliveResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ActivateCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActivateCustomerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoresList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="storeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoresListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoresListResult" type="tns:ArrayOfStore" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStore">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Store" nillable="true" type="tns:Store" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Store">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="town" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="latX" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="latY" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SalesFigures">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="monthreport" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="yearreport" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="storeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SalesFiguresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SalesFiguresResult" type="tns:ArrayOfSalesReport" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSalesReport">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SalesReport" nillable="true" type="tns:SalesReport" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SalesReport">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="totalSales" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="monthdate" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateTwitter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="transID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="sourceID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTwitterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateTwitterResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CustomerAccounts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="storeID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CustomerAccountsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerAccountsResult" type="tns:ArrayOfCustomerTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCustomerTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomerTransaction" nillable="true" type="tns:CustomerTransaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomerTransaction">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="purchaseDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="storename" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="showSafeCustomerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="customername" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="purchaseamount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FBComment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DisplayUnsafeQueryString">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="safeQueryString" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisplayUnsafeQueryStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DisplayUnsafeQueryStringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckLogon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckLogonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckLogonResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetDemoData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetDemoDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStoreName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="querystringWithStorecode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStoreNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStoreNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsCustomerActive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsCustomerActiveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IsCustomerActiveResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListCustomerVouchers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customercode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="redeemedstatus" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="storeID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListCustomerVouchersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListCustomerVouchersResult" type="tns:ArrayOfVoucher" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVoucher">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Voucher" nillable="true" type="tns:Voucher" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Voucher">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="storeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="datecreated" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dateredeemed" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="expires" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="value" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="storename" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="town" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="customername" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="customeremail" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customercode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customercomment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="queryStringSTAParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateTransactionResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RedeemCustVoucher">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inpRead" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RedeemCustVoucherResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RedeemCustVoucherResult" type="tns:RedeemedVoucher" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RedeemedVoucher">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Voucher">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="success" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LogInCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogInCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LogInCustomerResult" type="tns:Customer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Customer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Last" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="active" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FBTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="lastPurchaseID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="customercomment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FBTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FBTransactionResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RedeemVoucher">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="voucherID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RedeemVoucherResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RedeemVoucherResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CustomerStorePoints">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CustomerID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="storeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CustomerStorePointsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerStorePointsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListCustomers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetListCustomersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListCustomersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CustomersPointsDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CustomersPointsDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CustomersPointsDetailResult" type="tns:ArrayOfCustomerPointsInStore" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCustomerPointsInStore">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomerPointsInStore" nillable="true" type="tns:CustomerPointsInStore" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomerPointsInStore">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="points" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="storeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="storename" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ReturnStatus" nillable="true" type="tns:ReturnStatus" />
+      <s:element name="int" type="s:int" />
+      <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfStore" nillable="true" type="tns:ArrayOfStore" />
+      <s:element name="ArrayOfSalesReport" nillable="true" type="tns:ArrayOfSalesReport" />
+      <s:element name="ArrayOfCustomerTransaction" nillable="true" type="tns:ArrayOfCustomerTransaction" />
+      <s:element name="ArrayOfVoucher" nillable="true" type="tns:ArrayOfVoucher" />
+      <s:element name="RedeemedVoucher" nillable="true" type="tns:RedeemedVoucher" />
+      <s:element name="Customer" nillable="true" type="tns:Customer" />
+      <s:element name="ArrayOfCustomerPointsInStore" nillable="true" type="tns:ArrayOfCustomerPointsInStore" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SendHotelEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:SendHotelEmail" />
+  </wsdl:message>
+  <wsdl:message name="SendHotelEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:SendHotelEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:SendEmail" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:SendEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="RequestCustomerPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:RequestCustomerPassword" />
+  </wsdl:message>
+  <wsdl:message name="RequestCustomerPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:RequestCustomerPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="RequestCustomerActivationSoapIn">
+    <wsdl:part name="parameters" element="tns:RequestCustomerActivation" />
+  </wsdl:message>
+  <wsdl:message name="RequestCustomerActivationSoapOut">
+    <wsdl:part name="parameters" element="tns:RequestCustomerActivationResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateCustomer" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsAliveSoapIn">
+    <wsdl:part name="parameters" element="tns:IsAlive" />
+  </wsdl:message>
+  <wsdl:message name="IsAliveSoapOut">
+    <wsdl:part name="parameters" element="tns:IsAliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivateCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateCustomer" />
+  </wsdl:message>
+  <wsdl:message name="ActivateCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoresListSoapIn">
+    <wsdl:part name="parameters" element="tns:StoresList" />
+  </wsdl:message>
+  <wsdl:message name="StoresListSoapOut">
+    <wsdl:part name="parameters" element="tns:StoresListResponse" />
+  </wsdl:message>
+  <wsdl:message name="SalesFiguresSoapIn">
+    <wsdl:part name="parameters" element="tns:SalesFigures" />
+  </wsdl:message>
+  <wsdl:message name="SalesFiguresSoapOut">
+    <wsdl:part name="parameters" element="tns:SalesFiguresResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTwitterSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTwitter" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTwitterSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTwitterResponse" />
+  </wsdl:message>
+  <wsdl:message name="CustomerAccountsSoapIn">
+    <wsdl:part name="parameters" element="tns:CustomerAccounts" />
+  </wsdl:message>
+  <wsdl:message name="CustomerAccountsSoapOut">
+    <wsdl:part name="parameters" element="tns:CustomerAccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DisplayUnsafeQueryStringSoapIn">
+    <wsdl:part name="parameters" element="tns:DisplayUnsafeQueryString" />
+  </wsdl:message>
+  <wsdl:message name="DisplayUnsafeQueryStringSoapOut">
+    <wsdl:part name="parameters" element="tns:DisplayUnsafeQueryStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckLogonSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckLogon" />
+  </wsdl:message>
+  <wsdl:message name="CheckLogonSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckLogonResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetDemoDataSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetDemoData" />
+  </wsdl:message>
+  <wsdl:message name="ResetDemoDataSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetDemoDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStoreNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStoreName" />
+  </wsdl:message>
+  <wsdl:message name="GetStoreNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStoreNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsCustomerActiveSoapIn">
+    <wsdl:part name="parameters" element="tns:IsCustomerActive" />
+  </wsdl:message>
+  <wsdl:message name="IsCustomerActiveSoapOut">
+    <wsdl:part name="parameters" element="tns:IsCustomerActiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListCustomerVouchersSoapIn">
+    <wsdl:part name="parameters" element="tns:ListCustomerVouchers" />
+  </wsdl:message>
+  <wsdl:message name="ListCustomerVouchersSoapOut">
+    <wsdl:part name="parameters" element="tns:ListCustomerVouchersResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTransaction" />
+  </wsdl:message>
+  <wsdl:message name="CreateTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="RedeemCustVoucherSoapIn">
+    <wsdl:part name="parameters" element="tns:RedeemCustVoucher" />
+  </wsdl:message>
+  <wsdl:message name="RedeemCustVoucherSoapOut">
+    <wsdl:part name="parameters" element="tns:RedeemCustVoucherResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogInCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:LogInCustomer" />
+  </wsdl:message>
+  <wsdl:message name="LogInCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:LogInCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="FBTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:FBTransaction" />
+  </wsdl:message>
+  <wsdl:message name="FBTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:FBTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="RedeemVoucherSoapIn">
+    <wsdl:part name="parameters" element="tns:RedeemVoucher" />
+  </wsdl:message>
+  <wsdl:message name="RedeemVoucherSoapOut">
+    <wsdl:part name="parameters" element="tns:RedeemVoucherResponse" />
+  </wsdl:message>
+  <wsdl:message name="CustomerStorePointsSoapIn">
+    <wsdl:part name="parameters" element="tns:CustomerStorePoints" />
+  </wsdl:message>
+  <wsdl:message name="CustomerStorePointsSoapOut">
+    <wsdl:part name="parameters" element="tns:CustomerStorePointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListCustomersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListCustomers" />
+  </wsdl:message>
+  <wsdl:message name="GetListCustomersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListCustomersResponse" />
+  </wsdl:message>
+  <wsdl:message name="CustomersPointsDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:CustomersPointsDetail" />
+  </wsdl:message>
+  <wsdl:message name="CustomersPointsDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:CustomersPointsDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendHotelEmailHttpGetIn">
+    <wsdl:part name="To" type="s:string" />
+    <wsdl:part name="Body" type="s:string" />
+    <wsdl:part name="subject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendHotelEmailHttpGetOut" />
+  <wsdl:message name="SendEmailHttpGetIn">
+    <wsdl:part name="To" type="s:string" />
+    <wsdl:part name="From" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+    <wsdl:part name="Body" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailHttpGetOut">
+    <wsdl:part name="Body" element="tns:ReturnStatus" />
+  </wsdl:message>
+  <wsdl:message name="RequestCustomerPasswordHttpGetIn">
+    <wsdl:part name="customeremail" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RequestCustomerPasswordHttpGetOut" />
+  <wsdl:message name="RequestCustomerActivationHttpGetIn">
+    <wsdl:part name="email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RequestCustomerActivationHttpGetOut" />
+  <wsdl:message name="CreateCustomerHttpGetIn">
+    <wsdl:part name="Firstname" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="IsAliveHttpGetIn" />
+  <wsdl:message name="IsAliveHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="ActivateCustomerHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ActivateCustomerHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoresListHttpGetIn">
+    <wsdl:part name="userID" type="s:string" />
+    <wsdl:part name="storeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoresListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStore" />
+  </wsdl:message>
+  <wsdl:message name="SalesFiguresHttpGetIn">
+    <wsdl:part name="monthreport" type="s:string" />
+    <wsdl:part name="yearreport" type="s:string" />
+    <wsdl:part name="storeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SalesFiguresHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSalesReport" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTwitterHttpGetIn">
+    <wsdl:part name="transID" type="s:string" />
+    <wsdl:part name="sourceID" type="s:string" />
+    <wsdl:part name="comment" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTwitterHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="CustomerAccountsHttpGetIn">
+    <wsdl:part name="customerID" type="s:string" />
+    <wsdl:part name="storeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CustomerAccountsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCustomerTransaction" />
+  </wsdl:message>
+  <wsdl:message name="DisplayUnsafeQueryStringHttpGetIn">
+    <wsdl:part name="safeQueryString" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DisplayUnsafeQueryStringHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckLogonHttpGetIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckLogonHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ResetDemoDataHttpGetIn">
+    <wsdl:part name="customerID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResetDemoDataHttpGetOut" />
+  <wsdl:message name="GetStoreNameHttpGetIn">
+    <wsdl:part name="querystringWithStorecode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStoreNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="IsCustomerActiveHttpGetIn">
+    <wsdl:part name="email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsCustomerActiveHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="ListCustomerVouchersHttpGetIn">
+    <wsdl:part name="customercode" type="s:string" />
+    <wsdl:part name="redeemedstatus" type="s:string" />
+    <wsdl:part name="storeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListCustomerVouchersHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfVoucher" />
+  </wsdl:message>
+  <wsdl:message name="CreateTransactionHttpGetIn">
+    <wsdl:part name="customercode" type="s:string" />
+    <wsdl:part name="customercomment" type="s:string" />
+    <wsdl:part name="queryStringSTAParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateTransactionHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="RedeemCustVoucherHttpGetIn">
+    <wsdl:part name="inpRead" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RedeemCustVoucherHttpGetOut">
+    <wsdl:part name="Body" element="tns:RedeemedVoucher" />
+  </wsdl:message>
+  <wsdl:message name="LogInCustomerHttpGetIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LogInCustomerHttpGetOut">
+    <wsdl:part name="Body" element="tns:Customer" />
+  </wsdl:message>
+  <wsdl:message name="FBTransactionHttpGetIn">
+    <wsdl:part name="lastPurchaseID" type="s:string" />
+    <wsdl:part name="customercomment" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FBTransactionHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="RedeemVoucherHttpGetIn">
+    <wsdl:part name="voucherID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RedeemVoucherHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="CustomerStorePointsHttpGetIn">
+    <wsdl:part name="CustomerID" type="s:string" />
+    <wsdl:part name="storeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CustomerStorePointsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetListCustomersHttpGetIn" />
+  <wsdl:message name="GetListCustomersHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CustomersPointsDetailHttpGetIn">
+    <wsdl:part name="customerID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CustomersPointsDetailHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCustomerPointsInStore" />
+  </wsdl:message>
+  <wsdl:message name="SendHotelEmailHttpPostIn">
+    <wsdl:part name="To" type="s:string" />
+    <wsdl:part name="Body" type="s:string" />
+    <wsdl:part name="subject" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendHotelEmailHttpPostOut" />
+  <wsdl:message name="SendEmailHttpPostIn">
+    <wsdl:part name="To" type="s:string" />
+    <wsdl:part name="From" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+    <wsdl:part name="Body" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnStatus" />
+  </wsdl:message>
+  <wsdl:message name="RequestCustomerPasswordHttpPostIn">
+    <wsdl:part name="customeremail" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RequestCustomerPasswordHttpPostOut" />
+  <wsdl:message name="RequestCustomerActivationHttpPostIn">
+    <wsdl:part name="email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RequestCustomerActivationHttpPostOut" />
+  <wsdl:message name="CreateCustomerHttpPostIn">
+    <wsdl:part name="Firstname" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="IsAliveHttpPostIn" />
+  <wsdl:message name="IsAliveHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="ActivateCustomerHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ActivateCustomerHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoresListHttpPostIn">
+    <wsdl:part name="userID" type="s:string" />
+    <wsdl:part name="storeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoresListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStore" />
+  </wsdl:message>
+  <wsdl:message name="SalesFiguresHttpPostIn">
+    <wsdl:part name="monthreport" type="s:string" />
+    <wsdl:part name="yearreport" type="s:string" />
+    <wsdl:part name="storeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SalesFiguresHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSalesReport" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTwitterHttpPostIn">
+    <wsdl:part name="transID" type="s:string" />
+    <wsdl:part name="sourceID" type="s:string" />
+    <wsdl:part name="comment" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTwitterHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="CustomerAccountsHttpPostIn">
+    <wsdl:part name="customerID" type="s:string" />
+    <wsdl:part name="storeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CustomerAccountsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCustomerTransaction" />
+  </wsdl:message>
+  <wsdl:message name="DisplayUnsafeQueryStringHttpPostIn">
+    <wsdl:part name="safeQueryString" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DisplayUnsafeQueryStringHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckLogonHttpPostIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckLogonHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ResetDemoDataHttpPostIn">
+    <wsdl:part name="customerID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ResetDemoDataHttpPostOut" />
+  <wsdl:message name="GetStoreNameHttpPostIn">
+    <wsdl:part name="querystringWithStorecode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStoreNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="IsCustomerActiveHttpPostIn">
+    <wsdl:part name="email" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsCustomerActiveHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="ListCustomerVouchersHttpPostIn">
+    <wsdl:part name="customercode" type="s:string" />
+    <wsdl:part name="redeemedstatus" type="s:string" />
+    <wsdl:part name="storeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ListCustomerVouchersHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfVoucher" />
+  </wsdl:message>
+  <wsdl:message name="CreateTransactionHttpPostIn">
+    <wsdl:part name="customercode" type="s:string" />
+    <wsdl:part name="customercomment" type="s:string" />
+    <wsdl:part name="queryStringSTAParams" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateTransactionHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="RedeemCustVoucherHttpPostIn">
+    <wsdl:part name="inpRead" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RedeemCustVoucherHttpPostOut">
+    <wsdl:part name="Body" element="tns:RedeemedVoucher" />
+  </wsdl:message>
+  <wsdl:message name="LogInCustomerHttpPostIn">
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LogInCustomerHttpPostOut">
+    <wsdl:part name="Body" element="tns:Customer" />
+  </wsdl:message>
+  <wsdl:message name="FBTransactionHttpPostIn">
+    <wsdl:part name="lastPurchaseID" type="s:string" />
+    <wsdl:part name="customercomment" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FBTransactionHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="RedeemVoucherHttpPostIn">
+    <wsdl:part name="voucherID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RedeemVoucherHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="CustomerStorePointsHttpPostIn">
+    <wsdl:part name="CustomerID" type="s:string" />
+    <wsdl:part name="storeID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CustomerStorePointsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetListCustomersHttpPostIn" />
+  <wsdl:message name="GetListCustomersHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CustomersPointsDetailHttpPostIn">
+    <wsdl:part name="customerID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CustomersPointsDetailHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCustomerPointsInStore" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="SendHotelEmail">
+      <wsdl:input message="tns:SendHotelEmailSoapIn" />
+      <wsdl:output message="tns:SendHotelEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <wsdl:input message="tns:SendEmailSoapIn" />
+      <wsdl:output message="tns:SendEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerPassword">
+      <wsdl:input message="tns:RequestCustomerPasswordSoapIn" />
+      <wsdl:output message="tns:RequestCustomerPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerActivation">
+      <wsdl:input message="tns:RequestCustomerActivationSoapIn" />
+      <wsdl:output message="tns:RequestCustomerActivationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomer">
+      <wsdl:input message="tns:CreateCustomerSoapIn" />
+      <wsdl:output message="tns:CreateCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <wsdl:input message="tns:IsAliveSoapIn" />
+      <wsdl:output message="tns:IsAliveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateCustomer">
+      <wsdl:input message="tns:ActivateCustomerSoapIn" />
+      <wsdl:output message="tns:ActivateCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoresList">
+      <wsdl:input message="tns:StoresListSoapIn" />
+      <wsdl:output message="tns:StoresListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SalesFigures">
+      <wsdl:input message="tns:SalesFiguresSoapIn" />
+      <wsdl:output message="tns:SalesFiguresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTwitter">
+      <wsdl:input message="tns:UpdateTwitterSoapIn" />
+      <wsdl:output message="tns:UpdateTwitterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccounts">
+      <wsdl:input message="tns:CustomerAccountsSoapIn" />
+      <wsdl:output message="tns:CustomerAccountsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisplayUnsafeQueryString">
+      <wsdl:input message="tns:DisplayUnsafeQueryStringSoapIn" />
+      <wsdl:output message="tns:DisplayUnsafeQueryStringSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogon">
+      <wsdl:input message="tns:CheckLogonSoapIn" />
+      <wsdl:output message="tns:CheckLogonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetDemoData">
+      <wsdl:input message="tns:ResetDemoDataSoapIn" />
+      <wsdl:output message="tns:ResetDemoDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <wsdl:input message="tns:GetStoreNameSoapIn" />
+      <wsdl:output message="tns:GetStoreNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsCustomerActive">
+      <wsdl:input message="tns:IsCustomerActiveSoapIn" />
+      <wsdl:output message="tns:IsCustomerActiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListCustomerVouchers">
+      <wsdl:input message="tns:ListCustomerVouchersSoapIn" />
+      <wsdl:output message="tns:ListCustomerVouchersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTransaction">
+      <wsdl:input message="tns:CreateTransactionSoapIn" />
+      <wsdl:output message="tns:CreateTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RedeemCustVoucher">
+      <wsdl:input message="tns:RedeemCustVoucherSoapIn" />
+      <wsdl:output message="tns:RedeemCustVoucherSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogInCustomer">
+      <wsdl:input message="tns:LogInCustomerSoapIn" />
+      <wsdl:output message="tns:LogInCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FBTransaction">
+      <wsdl:input message="tns:FBTransactionSoapIn" />
+      <wsdl:output message="tns:FBTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RedeemVoucher">
+      <wsdl:input message="tns:RedeemVoucherSoapIn" />
+      <wsdl:output message="tns:RedeemVoucherSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerStorePoints">
+      <wsdl:input message="tns:CustomerStorePointsSoapIn" />
+      <wsdl:output message="tns:CustomerStorePointsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListCustomers">
+      <wsdl:input message="tns:GetListCustomersSoapIn" />
+      <wsdl:output message="tns:GetListCustomersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomersPointsDetail">
+      <wsdl:input message="tns:CustomersPointsDetailSoapIn" />
+      <wsdl:output message="tns:CustomersPointsDetailSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Service1HttpGet">
+    <wsdl:operation name="SendHotelEmail">
+      <wsdl:input message="tns:SendHotelEmailHttpGetIn" />
+      <wsdl:output message="tns:SendHotelEmailHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <wsdl:input message="tns:SendEmailHttpGetIn" />
+      <wsdl:output message="tns:SendEmailHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerPassword">
+      <wsdl:input message="tns:RequestCustomerPasswordHttpGetIn" />
+      <wsdl:output message="tns:RequestCustomerPasswordHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerActivation">
+      <wsdl:input message="tns:RequestCustomerActivationHttpGetIn" />
+      <wsdl:output message="tns:RequestCustomerActivationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomer">
+      <wsdl:input message="tns:CreateCustomerHttpGetIn" />
+      <wsdl:output message="tns:CreateCustomerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <wsdl:input message="tns:IsAliveHttpGetIn" />
+      <wsdl:output message="tns:IsAliveHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateCustomer">
+      <wsdl:input message="tns:ActivateCustomerHttpGetIn" />
+      <wsdl:output message="tns:ActivateCustomerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoresList">
+      <wsdl:input message="tns:StoresListHttpGetIn" />
+      <wsdl:output message="tns:StoresListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SalesFigures">
+      <wsdl:input message="tns:SalesFiguresHttpGetIn" />
+      <wsdl:output message="tns:SalesFiguresHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTwitter">
+      <wsdl:input message="tns:UpdateTwitterHttpGetIn" />
+      <wsdl:output message="tns:UpdateTwitterHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccounts">
+      <wsdl:input message="tns:CustomerAccountsHttpGetIn" />
+      <wsdl:output message="tns:CustomerAccountsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisplayUnsafeQueryString">
+      <wsdl:input message="tns:DisplayUnsafeQueryStringHttpGetIn" />
+      <wsdl:output message="tns:DisplayUnsafeQueryStringHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogon">
+      <wsdl:input message="tns:CheckLogonHttpGetIn" />
+      <wsdl:output message="tns:CheckLogonHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetDemoData">
+      <wsdl:input message="tns:ResetDemoDataHttpGetIn" />
+      <wsdl:output message="tns:ResetDemoDataHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <wsdl:input message="tns:GetStoreNameHttpGetIn" />
+      <wsdl:output message="tns:GetStoreNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsCustomerActive">
+      <wsdl:input message="tns:IsCustomerActiveHttpGetIn" />
+      <wsdl:output message="tns:IsCustomerActiveHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListCustomerVouchers">
+      <wsdl:input message="tns:ListCustomerVouchersHttpGetIn" />
+      <wsdl:output message="tns:ListCustomerVouchersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTransaction">
+      <wsdl:input message="tns:CreateTransactionHttpGetIn" />
+      <wsdl:output message="tns:CreateTransactionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RedeemCustVoucher">
+      <wsdl:input message="tns:RedeemCustVoucherHttpGetIn" />
+      <wsdl:output message="tns:RedeemCustVoucherHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogInCustomer">
+      <wsdl:input message="tns:LogInCustomerHttpGetIn" />
+      <wsdl:output message="tns:LogInCustomerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FBTransaction">
+      <wsdl:input message="tns:FBTransactionHttpGetIn" />
+      <wsdl:output message="tns:FBTransactionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RedeemVoucher">
+      <wsdl:input message="tns:RedeemVoucherHttpGetIn" />
+      <wsdl:output message="tns:RedeemVoucherHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerStorePoints">
+      <wsdl:input message="tns:CustomerStorePointsHttpGetIn" />
+      <wsdl:output message="tns:CustomerStorePointsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListCustomers">
+      <wsdl:input message="tns:GetListCustomersHttpGetIn" />
+      <wsdl:output message="tns:GetListCustomersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomersPointsDetail">
+      <wsdl:input message="tns:CustomersPointsDetailHttpGetIn" />
+      <wsdl:output message="tns:CustomersPointsDetailHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Service1HttpPost">
+    <wsdl:operation name="SendHotelEmail">
+      <wsdl:input message="tns:SendHotelEmailHttpPostIn" />
+      <wsdl:output message="tns:SendHotelEmailHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <wsdl:input message="tns:SendEmailHttpPostIn" />
+      <wsdl:output message="tns:SendEmailHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerPassword">
+      <wsdl:input message="tns:RequestCustomerPasswordHttpPostIn" />
+      <wsdl:output message="tns:RequestCustomerPasswordHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerActivation">
+      <wsdl:input message="tns:RequestCustomerActivationHttpPostIn" />
+      <wsdl:output message="tns:RequestCustomerActivationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomer">
+      <wsdl:input message="tns:CreateCustomerHttpPostIn" />
+      <wsdl:output message="tns:CreateCustomerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <wsdl:input message="tns:IsAliveHttpPostIn" />
+      <wsdl:output message="tns:IsAliveHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateCustomer">
+      <wsdl:input message="tns:ActivateCustomerHttpPostIn" />
+      <wsdl:output message="tns:ActivateCustomerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoresList">
+      <wsdl:input message="tns:StoresListHttpPostIn" />
+      <wsdl:output message="tns:StoresListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SalesFigures">
+      <wsdl:input message="tns:SalesFiguresHttpPostIn" />
+      <wsdl:output message="tns:SalesFiguresHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTwitter">
+      <wsdl:input message="tns:UpdateTwitterHttpPostIn" />
+      <wsdl:output message="tns:UpdateTwitterHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccounts">
+      <wsdl:input message="tns:CustomerAccountsHttpPostIn" />
+      <wsdl:output message="tns:CustomerAccountsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisplayUnsafeQueryString">
+      <wsdl:input message="tns:DisplayUnsafeQueryStringHttpPostIn" />
+      <wsdl:output message="tns:DisplayUnsafeQueryStringHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogon">
+      <wsdl:input message="tns:CheckLogonHttpPostIn" />
+      <wsdl:output message="tns:CheckLogonHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetDemoData">
+      <wsdl:input message="tns:ResetDemoDataHttpPostIn" />
+      <wsdl:output message="tns:ResetDemoDataHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <wsdl:input message="tns:GetStoreNameHttpPostIn" />
+      <wsdl:output message="tns:GetStoreNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsCustomerActive">
+      <wsdl:input message="tns:IsCustomerActiveHttpPostIn" />
+      <wsdl:output message="tns:IsCustomerActiveHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListCustomerVouchers">
+      <wsdl:input message="tns:ListCustomerVouchersHttpPostIn" />
+      <wsdl:output message="tns:ListCustomerVouchersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTransaction">
+      <wsdl:input message="tns:CreateTransactionHttpPostIn" />
+      <wsdl:output message="tns:CreateTransactionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RedeemCustVoucher">
+      <wsdl:input message="tns:RedeemCustVoucherHttpPostIn" />
+      <wsdl:output message="tns:RedeemCustVoucherHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogInCustomer">
+      <wsdl:input message="tns:LogInCustomerHttpPostIn" />
+      <wsdl:output message="tns:LogInCustomerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FBTransaction">
+      <wsdl:input message="tns:FBTransactionHttpPostIn" />
+      <wsdl:output message="tns:FBTransactionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RedeemVoucher">
+      <wsdl:input message="tns:RedeemVoucherHttpPostIn" />
+      <wsdl:output message="tns:RedeemVoucherHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerStorePoints">
+      <wsdl:input message="tns:CustomerStorePointsHttpPostIn" />
+      <wsdl:output message="tns:CustomerStorePointsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListCustomers">
+      <wsdl:input message="tns:GetListCustomersHttpPostIn" />
+      <wsdl:output message="tns:GetListCustomersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomersPointsDetail">
+      <wsdl:input message="tns:CustomersPointsDetailHttpPostIn" />
+      <wsdl:output message="tns:CustomersPointsDetailHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendHotelEmail">
+      <soap:operation soapAction="http://tempuri.org/SendHotelEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <soap:operation soapAction="http://tempuri.org/SendEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerPassword">
+      <soap:operation soapAction="http://tempuri.org/RequestCustomerPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerActivation">
+      <soap:operation soapAction="http://tempuri.org/RequestCustomerActivation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomer">
+      <soap:operation soapAction="http://tempuri.org/CreateCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <soap:operation soapAction="http://tempuri.org/IsAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateCustomer">
+      <soap:operation soapAction="http://tempuri.org/ActivateCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresList">
+      <soap:operation soapAction="http://tempuri.org/StoresList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesFigures">
+      <soap:operation soapAction="http://tempuri.org/SalesFigures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTwitter">
+      <soap:operation soapAction="http://tempuri.org/UpdateTwitter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccounts">
+      <soap:operation soapAction="http://tempuri.org/CustomerAccounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisplayUnsafeQueryString">
+      <soap:operation soapAction="http://tempuri.org/DisplayUnsafeQueryString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogon">
+      <soap:operation soapAction="http://tempuri.org/CheckLogon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetDemoData">
+      <soap:operation soapAction="http://tempuri.org/ResetDemoData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <soap:operation soapAction="http://tempuri.org/GetStoreName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCustomerActive">
+      <soap:operation soapAction="http://tempuri.org/IsCustomerActive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListCustomerVouchers">
+      <soap:operation soapAction="http://tempuri.org/ListCustomerVouchers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTransaction">
+      <soap:operation soapAction="http://tempuri.org/CreateTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedeemCustVoucher">
+      <soap:operation soapAction="http://tempuri.org/RedeemCustVoucher" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogInCustomer">
+      <soap:operation soapAction="http://tempuri.org/LogInCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FBTransaction">
+      <soap:operation soapAction="http://tempuri.org/FBTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedeemVoucher">
+      <soap:operation soapAction="http://tempuri.org/RedeemVoucher" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerStorePoints">
+      <soap:operation soapAction="http://tempuri.org/CustomerStorePoints" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCustomers">
+      <soap:operation soapAction="http://tempuri.org/GetListCustomers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomersPointsDetail">
+      <soap:operation soapAction="http://tempuri.org/CustomersPointsDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendHotelEmail">
+      <soap12:operation soapAction="http://tempuri.org/SendHotelEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <soap12:operation soapAction="http://tempuri.org/SendEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerPassword">
+      <soap12:operation soapAction="http://tempuri.org/RequestCustomerPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerActivation">
+      <soap12:operation soapAction="http://tempuri.org/RequestCustomerActivation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomer">
+      <soap12:operation soapAction="http://tempuri.org/CreateCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <soap12:operation soapAction="http://tempuri.org/IsAlive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateCustomer">
+      <soap12:operation soapAction="http://tempuri.org/ActivateCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresList">
+      <soap12:operation soapAction="http://tempuri.org/StoresList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesFigures">
+      <soap12:operation soapAction="http://tempuri.org/SalesFigures" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTwitter">
+      <soap12:operation soapAction="http://tempuri.org/UpdateTwitter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccounts">
+      <soap12:operation soapAction="http://tempuri.org/CustomerAccounts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisplayUnsafeQueryString">
+      <soap12:operation soapAction="http://tempuri.org/DisplayUnsafeQueryString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogon">
+      <soap12:operation soapAction="http://tempuri.org/CheckLogon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetDemoData">
+      <soap12:operation soapAction="http://tempuri.org/ResetDemoData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <soap12:operation soapAction="http://tempuri.org/GetStoreName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCustomerActive">
+      <soap12:operation soapAction="http://tempuri.org/IsCustomerActive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListCustomerVouchers">
+      <soap12:operation soapAction="http://tempuri.org/ListCustomerVouchers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTransaction">
+      <soap12:operation soapAction="http://tempuri.org/CreateTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedeemCustVoucher">
+      <soap12:operation soapAction="http://tempuri.org/RedeemCustVoucher" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogInCustomer">
+      <soap12:operation soapAction="http://tempuri.org/LogInCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FBTransaction">
+      <soap12:operation soapAction="http://tempuri.org/FBTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedeemVoucher">
+      <soap12:operation soapAction="http://tempuri.org/RedeemVoucher" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerStorePoints">
+      <soap12:operation soapAction="http://tempuri.org/CustomerStorePoints" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCustomers">
+      <soap12:operation soapAction="http://tempuri.org/GetListCustomers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomersPointsDetail">
+      <soap12:operation soapAction="http://tempuri.org/CustomersPointsDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1HttpGet" type="tns:Service1HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="SendHotelEmail">
+      <http:operation location="/SendHotelEmail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <http:operation location="/SendEmail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerPassword">
+      <http:operation location="/RequestCustomerPassword" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerActivation">
+      <http:operation location="/RequestCustomerActivation" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomer">
+      <http:operation location="/CreateCustomer" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <http:operation location="/IsAlive" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateCustomer">
+      <http:operation location="/ActivateCustomer" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresList">
+      <http:operation location="/StoresList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesFigures">
+      <http:operation location="/SalesFigures" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTwitter">
+      <http:operation location="/UpdateTwitter" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccounts">
+      <http:operation location="/CustomerAccounts" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisplayUnsafeQueryString">
+      <http:operation location="/DisplayUnsafeQueryString" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogon">
+      <http:operation location="/CheckLogon" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetDemoData">
+      <http:operation location="/ResetDemoData" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <http:operation location="/GetStoreName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCustomerActive">
+      <http:operation location="/IsCustomerActive" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListCustomerVouchers">
+      <http:operation location="/ListCustomerVouchers" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTransaction">
+      <http:operation location="/CreateTransaction" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedeemCustVoucher">
+      <http:operation location="/RedeemCustVoucher" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogInCustomer">
+      <http:operation location="/LogInCustomer" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FBTransaction">
+      <http:operation location="/FBTransaction" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedeemVoucher">
+      <http:operation location="/RedeemVoucher" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerStorePoints">
+      <http:operation location="/CustomerStorePoints" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCustomers">
+      <http:operation location="/GetListCustomers" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomersPointsDetail">
+      <http:operation location="/CustomersPointsDetail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1HttpPost" type="tns:Service1HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="SendHotelEmail">
+      <http:operation location="/SendHotelEmail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmail">
+      <http:operation location="/SendEmail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerPassword">
+      <http:operation location="/RequestCustomerPassword" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="RequestCustomerActivation">
+      <http:operation location="/RequestCustomerActivation" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomer">
+      <http:operation location="/CreateCustomer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <http:operation location="/IsAlive" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateCustomer">
+      <http:operation location="/ActivateCustomer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresList">
+      <http:operation location="/StoresList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesFigures">
+      <http:operation location="/SalesFigures" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTwitter">
+      <http:operation location="/UpdateTwitter" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerAccounts">
+      <http:operation location="/CustomerAccounts" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisplayUnsafeQueryString">
+      <http:operation location="/DisplayUnsafeQueryString" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogon">
+      <http:operation location="/CheckLogon" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetDemoData">
+      <http:operation location="/ResetDemoData" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <http:operation location="/GetStoreName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCustomerActive">
+      <http:operation location="/IsCustomerActive" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListCustomerVouchers">
+      <http:operation location="/ListCustomerVouchers" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTransaction">
+      <http:operation location="/CreateTransaction" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedeemCustVoucher">
+      <http:operation location="/RedeemCustVoucher" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogInCustomer">
+      <http:operation location="/LogInCustomer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FBTransaction">
+      <http:operation location="/FBTransaction" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedeemVoucher">
+      <http:operation location="/RedeemVoucher" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerStorePoints">
+      <http:operation location="/CustomerStorePoints" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCustomers">
+      <http:operation location="/GetListCustomers" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomersPointsDetail">
+      <http:operation location="/CustomersPointsDetail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://www.fidestin.com/test/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://www.fidestin.com/test/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1HttpGet" binding="tns:Service1HttpGet">
+      <http:address location="http://www.fidestin.com/test/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1HttpPost" binding="tns:Service1HttpPost">
+      <http:address location="http://www.fidestin.com/test/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

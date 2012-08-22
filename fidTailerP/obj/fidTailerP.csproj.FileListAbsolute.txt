@@ -1,0 +1,5 @@
+C:\Users\bmcardle\Documents\Visual Studio 2005\Projects\fidTailerP\fidTailerP\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\bmcardle\Documents\Visual Studio 2005\Projects\fidTailerP\fidTailerP\bin\fidTailerP.dll
+C:\Users\bmcardle\Documents\Visual Studio 2005\Projects\fidTailerP\fidTailerP\bin\fidTailerP.pdb
+C:\Users\bmcardle\Documents\Visual Studio 2005\Projects\fidTailerP\fidTailerP\obj\Debug\fidTailerP.dll
+C:\Users\bmcardle\Documents\Visual Studio 2005\Projects\fidTailerP\fidTailerP\obj\Debug\fidTailerP.pdb
