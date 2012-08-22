@@ -81,7 +81,25 @@ Fidestin.Utils.checkConnection=function(){
 }
 
 
-
+//Used to redeem the voucher for the retailer...
+Fidestin.Utils.javFunc=function(vid){
+		alert("Redeem this Voucher : " + vid);
+		var params="{voucherID:'"+vid+"'}";
+	            $.ajax({
+	                type:"POST",
+	                data:params,
+	                dataType:"json",    
+	                contentType: "application/json; charset=utf-8",
+	                url:Fidestin.WebServices.Location+"/Service1.asmx/RedeemVoucher",
+	                success:function(result) {
+	                    alert('Voucher ' + vid + ' redeemed.Reloading data....');
+	                    window.location.reload();
+	                },
+	                error:function(){
+	                    alert('Error in Fidestin.Utils.javFunc');
+	                }
+	            });      
+}
 
 Fidestin.Utils.getMonthAsInteger=function(monthstring)
 {
@@ -105,12 +123,6 @@ Fidestin.Utils.getMonthAsInteger=function(monthstring)
 }
 
 Fidestin.Utils.getOpenVouchers=function(storeID){
-			console.log('Fidestin.Utils.getOpenVouchers');
-				//BMCA JAN 2012 Added StoreID as param
-				//var query=window.location.search.substring(1);
-				//var splitResult=query.split("s=");
-				//var storeID=splitResult[1];
-				
 				var params="{customercode:'0',redeemedstatus:'0',storeID:'"+storeID+"'}";
 	            $.ajax({
 	                type:"POST",
@@ -119,34 +131,25 @@ Fidestin.Utils.getOpenVouchers=function(storeID){
 	                contentType: "application/json; charset=utf-8",
 	                url:Fidestin.WebServices.Location+"/Service1.asmx/ListCustomerVouchers",
 	                success:function(result) {
-	                        //Update the badge with the totals...
-	                	 	//alert('Store Name :' +result) ;
-							//Loop through results
 							vouchers=result.length;
-							
 							$('#tabvouchers').html('Vouchers ('+vouchers+')');
 							var htmltable='<thead>';
 							var trclass='';
 							htmltable+='<tr><th>Customer</th><th>Purchase Date</th><th>Store</th><th>Description</th><th>Town</th><th>Voucher Code</th></tr>';
-							htmltable+='</thead>';
-							htmltable+='<tbody>';
-							//LOOP STARTS
+							htmltable+='</thead><tbody>';
 							for (var i=0;i<result.length;i++){
 								trclass=(i%2==0)?'alt':'bla';
-								htmltable+='<TR class='+trclass+'><TD><a href=Fidestin.WebServices.Location+"/CustomerAccounts.html?c='+result[i].customerID+'" target="_blank">'+result[i].customername+'</a></TD><TD>'+ result[i].datecreated+'</TD><td>'+result[i].storename+'</td><td>'+result[i].description+'</td><td>'+result[i].town+'</td><td>'+result[i].id+'-'+result[i].customerID+'-'+result[i].storeID+'</td></TR>';
+								htmltable+='<TR class='+trclass+'><TD><a href=Fidestin.WebServices.Location+"/CustomerAccounts.html?c='+result[i].customerID+'" target="_blank">'+result[i].customername+'</a></TD><TD>'+ result[i].datecreated+'</TD><td>'+result[i].storename+'</td><td>'+result[i].description+'</td><td>'+result[i].town+'</td><td><a href="#" onclick="javascript:Fidestin.Utils.javFunc('+result[i].id+');">'+result[i].id+'-'+result[i].customerID+'-'+result[i].storeID+'</td></TR>';
 							}
-							//LOOP ENDS
 							htmltable+='</tbody>';
 							$('#vouchers_table').append(htmltable);
-						
 	                },
 	                error:function(){
 	                    alert('Error in getOpenVouchers');
 	                }
-
 	            });      
-	      
-			}
+}
+			
 //AAA=120, AAB=180, AAC=220 height. All are 250 width.
 Fidestin.Utils.DisplayMessage=function(thetitle, themessage,classsize){
     if (classsize==null) classsize='AAA';

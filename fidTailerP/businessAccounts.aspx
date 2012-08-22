@@ -83,7 +83,7 @@
 				{
 					var userID=$('#hidSess').html();
 					storeID=$('#TextBox1').val();
-					alert('Store ID is ' + storeID);
+					//alert('Store ID is ' + storeID);
 				}
 			);
 		</script>
@@ -144,22 +144,10 @@
 					  mapTypeId: google.maps.MapTypeId.ROADMAP
 					};
 					map = new google.maps.Map(document.getElementById('map_canvas'),myOptions);
-								
-					
-					
-					
 				}
-
-				
-			
-			//DOM listener	added to the DOM not the map
-			// google.maps.event.addDomListener(window, 'load', initialize);
 		</script>
 	
 		<script type="text/javascript">
-		
-		
-		
 		var options;
 		var chart;
 		
@@ -235,8 +223,6 @@
 				return undefined;
 			}
 		
-		
-			
 
 			//takes an incomplete array (oldArray) and fleshes it out inesrting zeros for no records
 			//returns the new full newArray
@@ -258,8 +244,6 @@
 			var xAxis={data:[]};	xAxis.name='MrWaffle';
 			var yAxis={data:[]};	yAxis.name='yaxis';
 
-			
-			
 			function getChartDateForMonth(){
 			
 			var $container = $('#container');
@@ -289,7 +273,6 @@
 				try
 					{
 						var params="{userID:'0',storeID:'"+storeID+"'}";
-						alert('getStoreDetail ' + params);
 						$.ajax({
 							type:"POST",
 							data:params,
@@ -297,9 +280,7 @@
 							contentType: "application/json; charset=utf-8",
 							url:Fidestin.WebServices.Location+"/Service1.asmx/StoresList",
 							success:function(result) {
-									//alert('Name '+result[0].name);
 									$('#storedetails').html('<table><tr><td>'+result[0].name+', '+result[0].address1+'</td></tr><tr><td>'+result[0].town+'</td></tr></table>');
-									//display the store address etc
 									var mrwaffle=new google.maps.LatLng(result[0].latX, result[0].latY);
 									marker = new google.maps.Marker({
 										position	: mrwaffle,
@@ -309,14 +290,12 @@
 									});	
 									google.maps.event.addListener(marker, 'click', function() {
 											infowindow.open(map,marker);
-									});
+									    });
 									var infowindow = new google.maps.InfoWindow({
 											content: result[0].name
-									});
+									    });
 									toggleBounce(marker);
 									map.setCenter(mrwaffle);
-									
-									//set the map location
 							},
 							error:function(){
 								alert('Error in getStoreDetail');
@@ -328,14 +307,11 @@
 				catch(b){
 					alert('Error in getStoreDetail '+b); 
 				}
-				
 			}
 			
 			function getChartDate(monthreport){
 				try
 					{
-						
-						
 						var params="{monthreport:'"+monthreport+"',yearreport:'2012',storeID:'"+storeID+"'}";
 						$.ajax({
 							type:"POST",
@@ -357,24 +333,17 @@
 							error:function(){
 								alert('Error in getChartDate');
 							}
-
 						});      
 					}
 					
 				catch(b){
 					alert('Error in getChartDate '+b); 
 				}
-				
 			}
 		
 		
 			function getClosedVouchers(){
-			    //var query=window.location.search.substring(1);
-				//var splitResult=query.split("s=");
-				//var storeID=splitResult[1];
-				
 				var params="{customercode:'0',redeemedstatus:'1',storeID:'"+storeID+"'}";
-				alert('getClosedVouchers() ' + params);
 	            $.ajax({
 	                type:"POST",
 	                data:params,
@@ -382,51 +351,28 @@
 	                contentType: "application/json; charset=utf-8",
 	                url:Fidestin.WebServices.Location+"/Service1.asmx/ListCustomerVouchers",
 	                success:function(result) {
-	                        //Update the badge with the totals...
-	                	 	//alert('Store Name :' +result) ;
-							//Loop through results
 							redeem=result.length;
 							$('#tabredeem').html('Redeemed ('+redeem+')');
-							
 							var htmltable='<thead>';
 							var trclass='';
 							htmltable+='<tr><th>Customer</th><th>Purchased Date</th><th>Redeemed Date</th><th>Store</th><th>Description</th><th>Town</th><th>Voucher Code</th></tr>';
-							htmltable+='</thead>';
-							htmltable+='<tbody>';
-							
-							//LOOP STARTS
+							htmltable+='</thead><tbody>';
 							for (var i=0;i<result.length;i++){
 								trclass=(i%2==0)?'alt':'bla';
-								javFunc=function(){
-										alert("Redeem Voucher : " + result[i].id+'-'+result[i].customerID+'-'+result[i].storeID);
-										}
-										//alert("Reddem");
-							//	htmltable+='<TR class='+trclass+'><TD><a href=Fidestin.WebServices.Location+"/CustomerAccounts.html?c='+result[i].customerID+'" target="_blank">'+result[i].customername+'</a></TD><td>'+result[i].datecreated+'</td><TD>'+ result[i].datecreated+'</TD><td>'+result[i].storename+'</td><td>'+result[i].description+'</td><td>'+result[i].town+'</td></TR>';
-								htmltable+='<TR class='+trclass+'><TD><a href="#" target="_blank">'+result[i].customername+'</a></TD><td>'+result[i].datecreated+'</td><TD>'+ result[i].datecreated+'</TD><td>'+result[i].storename+'</td><td>'+result[i].description+'</td><td>'+result[i].town+'</td><td><a href="#" onclick="javascript:javFunc();">'+result[i].id+'-'+result[i].customerID+'-'+result[i].storeID+'</a></td></TR>';
+								htmltable+='<TR class='+trclass+'><TD><a href="#" target="_blank">'+result[i].customername+'</a></TD><td>'+result[i].datecreated+'</td><TD>'+ result[i].datecreated+'</TD><td>'+result[i].storename+'</td><td>'+result[i].description+'</td><td>'+result[i].town+'</td><td><a href="#" onclick="javascript:Fidestin.Utils.javFunc('+result[i].id+');">'+result[i].id+'-'+result[i].customerID+'-'+result[i].storeID+'</a></td></TR>';
 							}
-							//LOOP ENDS
 							htmltable+='</tbody>';
 							$('#redeemed_table').append(htmltable);
-						
 	                },
 	                error:function(){
 	                    alert('Error in getClosedVouchers');
 	                }
-
 	            });      
 			}
 			
-			//Fidestin.Utils.getOpenVouchers(); this is now defined in the Fidestin.Utils library file....			
-			
-			
 			function getAccount(){
-				//var query=window.location.search.substring(1);
-				//var splitResult=query.split("s=");
-				
-				//alert(storeID);
 				
 				var params="{customerID:'0',storeID:'"+ storeID+"'}";
-				alert('getAccount ' + params);
 	            $.ajax({
 	                type:"POST",
 	                data:params,
@@ -434,27 +380,20 @@
 	                contentType: "application/json; charset=utf-8",
 	                url:Fidestin.WebServices.Location+"/Service1.asmx/CustomerAccounts",
 	                success:function(result) {
-	                        //Update the badge with the totals...
-	                	 	//alert('Store Name :' +result) ;
-							//Loop through results
 							points=result.length;
 							$('#tabpoints').html('Transaction ('+points+')');
 							var htmltable='<thead>';
 							var trclass='';
 							htmltable+='<tr><th>Customers</th><th>Purchase Date</th><th>Store</th><th>Amount</th><th>Facebook</th></tr>';
-							htmltable+='</thead>';
-							htmltable+='<tbody>';
-							//LOOP STARTS
+							htmltable+='</thead><tbody>';
 							for (var i=0;i<result.length;i++){
 								trclass=(i%2==0)?'alt':'bla';
-								//htmltable+='<TR class='+trclass+'><TD><a href=Fidestin.WebServices.Location+"/CustomerAccounts.html?c='+result[i].customerID+'" target="_blank">'+result[i].customername+'</a></TD><TD>'+ result[i].purchaseDate+'</TD><td>'+result[i].storename+'</td><td>'+result[i].purchaseamount+'</td></TR>';
 								htmltable+='<TR class='+trclass+'><TD><a href="#top" target="_blank">'+result[i].customername+'</a></TD><TD>'+ result[i].purchaseDate+'</TD><td>'+result[i].storename+'</td><td>'+result[i].purchaseamount+'</td><TD>'+result[i].FBComment+'</td></TR>';
 							}
 							if (result.length==0)
 							{
 								htmltable+='<TR class="alt"><TD><a href="#top" target="_blank">None</a></TD><TD>NONE</TD><td>NONE</td><td>NONE</td><TD>NONE</td></TR>';
 							}
-							//LOOP ENDS
 							htmltable+='</tbody>';
 							$('#transactions_table').append(htmltable);
 							$('#accountdetail').html(result + ' welcomes you. Please install this app.');
@@ -462,27 +401,16 @@
 	                error:function(){
 	                    alert('Error in getAccount');
 	                }
-
 	            });      
 	      }
 			
 		function getVoucherLibrary(){
-			var query=window.location.search.substring(1);
-			var splitResult=query.split("s=");
-			var storeID=splitResult[1];
-			
 			Fidestin.Utils.getOpenVouchers(storeID);
-
 		}		
 		
 		
 		function getFBPosts(){
-				//var query=window.location.search.substring(1);
-				//var splitResult=query.split("s=");
-				//var storeID=splitResult[1];
-				
 				var params="{storeID:'"+ storeID+"'}";
-				alert('getFBPosts:' + params);
 	            $.ajax({
 	                type:"POST",
 	                data:params,
@@ -490,27 +418,20 @@
 	                contentType: "application/json; charset=utf-8",
 	                url:"http://www.fidestin.com/FB/Service1.asmx/LoadPosts",
 	                success:function(result) {
-	                        //Update the badge with the totals...
-	                	 	//alert('Store Name :' +result) ;
-							//Loop through results
 							messages=result.length;
 							$('#tabfacebook').html('Facebook - ('+messages+')');
 							var htmltable='<thead>';
 							var trclass='';
 							htmltable+='<tr><th>Customer</th><th>Purchase Date</th><th>Message</th><th>Amount</th></tr>';
-							htmltable+='</thead>';
-							htmltable+='<tbody>';
-							//LOOP STARTS
+							htmltable+='</thead><tbody>';
 							for (var i=0;i<result.length;i++){
 								trclass=(i%2==0)?'alt':'bla';
-								//htmltable+='<TR class='+trclass+'><TD><a href=Fidestin.WebServices.Location+"/CustomerAccounts.html?c='+result[i].customer_id+'" target="_blank">'+result[i].customername+'</a></TD><TD>'+ result[i].fb_posted_at+'</TD><td>'+result[i].fb_message+'</td><td>'+result[i].amount+'</td></TR>';
 								htmltable+='<TR class='+trclass+'><TD><a href="#" target="_blank">'+result[i].customername+'</a></TD><TD>'+ result[i].fb_posted_at+'</TD><td>'+result[i].fb_message+'</td><td>'+result[i].amount+'</td></TR>';
 							}
 							if (result.length==0)
 							{
 								htmltable+='<TR class="alt"><TD><a href="#top" target="_blank">None</a></TD><TD>NONE</TD><td>NONE</td><td>NONE</td><TD>NONE</td></TR>';
 							}
-							//LOOP ENDS
 							htmltable+='</tbody>';
 							$('#facebook_table').append(htmltable);
 							$('#accountdetail').html(result + ' welcomes you. Please install this app.');
@@ -518,7 +439,6 @@
 	                error:function(){
 	                    alert('Error in getFBPosts');
 	                }
-
 	            });      
 	      }	
 			
@@ -538,17 +458,12 @@
 		<p>
 		<a name="top">
 		<div class="demo">
-		
-			
-									<a href="javascript:window.print()"><img src="print-icon.png" width="25" height="25" /></a>
-									<BR>
-									<a href="javascript:window.print()">Print This Page</a>
-									<br>
+			<a href="javascript:window.print()"><img src="print-icon.png" width="25" height="25" /></a>
+			<BR>
+			<a href="javascript:window.print()">Print This Page</a>
+			<br>
 			
 			<div id="top"> <a href="javascript:window.close();">Close Window</a></div>
-			<!--
-			<div id="top"> <a href=Fidestin.WebServices.Location+"/businessaccounts.html?s=3">Refresh Data</a></div>
-			-->
 			<div id="Div1"> <a href="javascript:window.location.reload();">Refresh Data</a></div>
 			<P>
 			<div id="accordion">
@@ -565,7 +480,6 @@
 							</tr>
 						</table>
 					</div>
-					
 				
 				<h3><a href="#section2" id="section2">Configuration</a></h3>
 					<div id="config"><strong>Store configuration data.</strong>
@@ -601,6 +515,5 @@
 					</div>
 			</div>
 		</div>
-		
 </body>
 </html>
