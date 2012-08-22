@@ -18,7 +18,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        &nbsp;<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" Text="Logout"></asp:HyperLink>
+        &nbsp;<asp:TextBox ID="TextBox1" runat="server" BorderStyle="None" ForeColor="white" BackColor="white" Enabled="false"></asp:TextBox>
         <asp:Repeater ID="rpStores" runat="server" OnItemCommand="rpStores_ItemCommand">
             <HeaderTemplate>
                 <table width="600px" cellpadding="2" cellspacing="1" style="border:1px solid maroon;">

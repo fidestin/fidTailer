@@ -16,10 +16,10 @@
 		
 		<script src="fidestin.js" type="text/javascript"></script>
 		
-		<link rel="stylesheet" href="demos.css" type="text/css">
+		<link rel="stylesheet" href="demos.css" type="text/css" />
 		
-		<script type="text/javascript" src="js/highcharts.js" type="text/javascript"></script>
-		<script type="text/javascript" src="js/modules/exporting.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/highcharts.js" ></script>
+		<script type="text/javascript" src="js/modules/exporting.js" ></script>
 		<style type="text/css">
 		
 		table
@@ -438,25 +438,28 @@
 <BODY onload="getAccount();getVoucherLibrary();getClosedVouchers();getChartDateForMonth();getFBPosts();">
     <form id="form1" runat="server">
     <div>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-    </div>
-    </form>
+        <asp:TextBox ID="TextBox1" runat="server"  BorderStyle="None" ForeColor="white" Enabled="false" BackColor="White"></asp:TextBox>
+   
     <!-- Madin Fidestin Stuff -->
     
-         <h1>
-			<div id="accountdetails"></div></H1>
+         
+			<div id="accountdetails"></div>
 		<P>
 		<p>
 		<a name="top">
+			
 		<div class="demo">
-			<a href="javascript:window.print()"><img src="print-icon.png" width="25" height="25" /></a>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/storeList.aspx" Text="<- Stores"></asp:HyperLink>
+            <BR />
+            <br />
+            <a href="javascript:window.print()"><img src="images/print-icon.png" width="25" height="25" /></a>
 			<BR>
 			<a href="javascript:window.print()">Print This Page</a>
 			<br>
-			
-			<div id="top"> <a href="javascript:window.close();">Close Window</a></div>
 			<div id="Div1"> <a href="javascript:window.location.reload();">Refresh Data</a></div>
 			<P>
+	 </div>
+    </form>
 			<div id="accordion">
 				<h3><a href="#section1" id="section1">General Store Information</a></h3>
 					<div id="stores">

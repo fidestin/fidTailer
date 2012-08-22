@@ -4,11 +4,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-        <link href="login-box.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="themes/base/jquery.ui.all.css">
-		<link rel="stylesheet" href="tableloaderstyle.css">
-		<script src="jquery-1.6.2.js"></script>
-		<script src="fidestin.js"></script>
+        <link href="themes/base/login-box.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="themes/base/jquery.ui.all.css" />
+		<link rel="stylesheet" href="tableloaderstyle.css" />
+		<script src="jquery-1.6.2.js" type="text/javascript"></script>
+		<script src="fidestin.js" type="text/javascript"></script>
 </head>
 <script type="text/javascript">
 			function submitLogon(){
@@ -42,7 +42,7 @@
 <body>
     
     <div style="padding: 100px 0 0 250px;">
-    <div><img src='fido.jpg' width="50" height="50"/></div>
+    <div><img src='images/fido.jpg' width="50" height="50"/></div>
         <form runat="server">
          <div id="login-box">
 

@@ -16,13 +16,10 @@ public partial class _Default : System.Web.UI.Page
         if (!IsPostBack)
         {
             //first page load
+            Session["userID"] = 0;
         }
         else
         {
-            //handle the logon here...
-
-
-            //wsFidestin.CheckLogon
 
         }
     }
