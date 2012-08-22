@@ -83,22 +83,24 @@ Fidestin.Utils.checkConnection=function(){
 
 //Used to redeem the voucher for the retailer...
 Fidestin.Utils.javFunc=function(vid){
-		alert("Redeem this Voucher : " + vid);
-		var params="{voucherID:'"+vid+"'}";
-	            $.ajax({
-	                type:"POST",
-	                data:params,
-	                dataType:"json",    
-	                contentType: "application/json; charset=utf-8",
-	                url:Fidestin.WebServices.Location+"/Service1.asmx/RedeemVoucher",
-	                success:function(result) {
-	                    alert('Voucher ' + vid + ' redeemed.Reloading data....');
-	                    window.location.reload();
-	                },
-	                error:function(){
-	                    alert('Error in Fidestin.Utils.javFunc');
-	                }
-	            });      
+		if (confirm("Redeem this Voucher : " + vid+"?"))
+		{
+            var params="{voucherID:'"+vid+"'}";
+            $.ajax({
+                type:"POST",
+                data:params,
+                dataType:"json",    
+                contentType: "application/json; charset=utf-8",
+                url:Fidestin.WebServices.Location+"/Service1.asmx/RedeemVoucher",
+                success:function(result) {
+                    //alert('Voucher ' + vid + ' redeemed.Reloading data....');
+                    window.location.reload();
+                },
+                error:function(){
+                    alert('Error in Fidestin.Utils.javFunc');
+                }
+            });      
+	      }
 }
 
 Fidestin.Utils.getMonthAsInteger=function(monthstring)

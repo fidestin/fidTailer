@@ -61,7 +61,6 @@
 			}
 		table tr.alt :hover
 			{
-			/*color:#fff;*/
 			background-color:#fff;
 			}
 			
@@ -84,36 +83,30 @@
 					var userID=$('#hidSess').html();
 					storeID=$('#TextBox1').val();
 					//alert('Store ID is ' + storeID);
+					
 				}
+				
 			);
 		</script>
-		
 		
 		<script type="text/javascript">
 			var query;
 			var map;
-			
 			var points=0;
 			var vouchers=0;
 			var redeem=0;
 			var charts=0;
 			
 			$(function() {
-			
 				query=window.location.search.substring(1);
-				
 				$( "#tabs" ).tabs();
-				
 				$("#accordion").accordion({
 						autoHeight: false,
 						navigation:true
 					});
-					
 				addChart();
-				
 				initialize();						//draw map first...
-				getStoreDetail(query.substr(2));	//add marker
-				
+				getStoreDetail(storeID);	        //add marker
 			});
 		</script>
 		<style type="text/css">
@@ -322,8 +315,6 @@
 							success:function(result) {
 								$('#tabchart').html('Charts (1)');
 								var fulldata=prepareArray(result,0,31);
-								
-								
 								for (var i=0;i<fulldata.length;i++){
 											xAxis.data[i]=fulldata[i][1];
 											yAxis.data[i]=fulldata[i][0];
@@ -359,7 +350,7 @@
 							htmltable+='</thead><tbody>';
 							for (var i=0;i<result.length;i++){
 								trclass=(i%2==0)?'alt':'bla';
-								htmltable+='<TR class='+trclass+'><TD><a href="#" target="_blank">'+result[i].customername+'</a></TD><td>'+result[i].datecreated+'</td><TD>'+ result[i].datecreated+'</TD><td>'+result[i].storename+'</td><td>'+result[i].description+'</td><td>'+result[i].town+'</td><td><a href="#" onclick="javascript:Fidestin.Utils.javFunc('+result[i].id+');">'+result[i].id+'-'+result[i].customerID+'-'+result[i].storeID+'</a></td></TR>';
+								htmltable+='<TR class='+trclass+'><TD><a href="#" target="_blank">'+result[i].customername+'</a></TD><td>'+result[i].datecreated+'</td><TD>'+ result[i].datecreated+'</TD><td>'+result[i].storename+'</td><td>'+result[i].description+'</td><td>'+result[i].town+'</td><td>'+result[i].id+'-'+result[i].customerID+'-'+result[i].storeID+'</a></td></TR>';
 							}
 							htmltable+='</tbody>';
 							$('#redeemed_table').append(htmltable);

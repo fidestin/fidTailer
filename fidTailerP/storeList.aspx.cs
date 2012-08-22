@@ -42,7 +42,7 @@ namespace fidTailerP
         {
             Int32 storeID = Convert.ToInt32(e.CommandArgument);
             Session["storeID"] = storeID;
-            Response.Redirect("businessAccounts.aspx?q="+storeID.ToString());
+            Response.Redirect("businessAccounts.aspx");
         }
     }
 }
