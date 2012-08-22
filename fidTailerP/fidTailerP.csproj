@@ -78,6 +78,8 @@
     </None>
     <Content Include="demos.css" />
     <Content Include="fidestin.js" />
+    <Content Include="images\fido.jpg" />
+    <Content Include="images\print-icon.png" />
     <Content Include="jquery-1.6.2.js" />
     <Content Include="jquery.tablesorter.min.js" />
     <Content Include="js\highcharts.js" />
@@ -98,6 +100,8 @@
     <Content Include="themes\base\jquery.ui.slider.css" />
     <Content Include="themes\base\jquery.ui.tabs.css" />
     <Content Include="themes\base\jquery.ui.theme.css" />
+    <Content Include="themes\base\login-box-backg.png" />
+    <Content Include="themes\base\login-box.css" />
     <Content Include="ui\jquery.ui.accordion.js" />
     <Content Include="ui\jquery.ui.core.js" />
     <Content Include="ui\jquery.ui.tabs.js" />
