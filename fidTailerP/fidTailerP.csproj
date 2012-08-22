@@ -40,6 +40,7 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="businessAccounts.aspx" />
     <Content Include="Default.aspx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -104,6 +105,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="businessAccounts.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>businessAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="businessAccounts.aspx.designer.cs">
+      <DependentUpon>businessAccounts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

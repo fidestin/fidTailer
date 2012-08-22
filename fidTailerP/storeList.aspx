@@ -18,7 +18,33 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox></div>
+        &nbsp;<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:Repeater ID="rpStores" runat="server" OnItemCommand="rpStores_ItemCommand">
+            <HeaderTemplate>
+                <table width="600px" cellpadding="2" cellspacing="1" style="border:1px solid maroon;">
+                    <tr>
+                        <th>Store</th>
+                        <th>Address</th>
+                    </tr>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td><%# DataBinder.Eval(Container,"DataItem.Name")%></td>
+                    <td><%# DataBinder.Eval(Container,"DataItem.address1")%></td>
+                    <td><asp:LinkButton ID="btnDetails" runat="server" CommandName="Details" CommandArgument='<%# DataBinder.Eval(Container,"DataItem.ID") %>'>Details</asp:LinkButton></td>
+                </tr>
+            </ItemTemplate>
+            <AlternatingItemTemplate>
+                <tr bgcolor="#e8e8e8">
+                    <td><%# DataBinder.Eval(Container, "DataItem.Name")%></td>
+                    <td><%# DataBinder.Eval(Container,"DataItem.address1")%></td>
+                    <td><asp:LinkButton ID="btnDetails" runat="server" CommandName="Details" CommandArgument='<%# DataBinder.Eval(Container,"DataItem.ID") %>'>Details</asp:LinkButton></td>
+                </tr>
+            </AlternatingItemTemplate>
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
+        </asp:Repeater>
     </form>
 </body>
 </html>
